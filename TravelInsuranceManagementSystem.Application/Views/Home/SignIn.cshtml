@@ -1,0 +1,234 @@
+﻿
+@{
+    ViewData["Title"] = "Sign In / Sign Up";
+}
+
+@section Styles {
+<style>
+  :root{
+    --tb-navy: #001f3d;
+    --tb-coral: #ed985f;
+    --tb-peach: #f7b980;
+    --tb-gray:  #e6e6e6;
+    --tb-card:  #08223f;
+    --tb-text:  #ffffff;
+    --tb-muted: #cfd6df;
+    --tb-focus: #f7b980;
+  }
+
+  .auth-bg {
+    min-height: 100vh;
+    background-image:
+      linear-gradient(rgba(0, 6, 20, 0.55), rgba(0, 6, 20, 0.75)),
+      url('https://images.unsplash.com/photo-1467269204594-9661b134dd2b?q=80&w=1600&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    display: grid;
+    place-items: center;
+    color: var(--tb-text);
+  }
+
+  .auth-card {
+    background: var(--tb-card);
+    color: var(--tb-text);
+    border-radius: 16px;
+    max-width: 440px;
+    width: 100%;
+    border: 1px solid rgba(230, 230, 230, 0.12);
+    opacity: 80%;
+  }
+  .brand-line {
+    display: flex; align-items: center; gap: .75rem; justify-content: center;
+  }
+  .brand-line img { height: 44px; width: auto; }
+
+  .nav-pills .nav-link {
+    border-radius: 30px; color: var(--tb-text);
+    border: 1px solid rgba(230,230,230,.18); background: transparent;
+  }
+  .nav-pills .nav-link:hover { border-color: var(--tb-peach); color: var(--tb-peach); }
+  .nav-pills .nav-link.active {
+    background: var(--tb-coral); border-color: var(--tb-coral);
+    color: var(--tb-navy); font-weight: 600;
+  }
+  label { color: var(--tb-muted); }
+  .form-control {
+    background-color: rgba(230, 230, 230, 0.15);
+    border: 1px solid rgba(230, 230, 230, 0.35);
+    color: var(--tb-text);
+  }
+  .form-control::placeholder { color: rgba(255,255,255,0.65); }
+  .form-control:focus {
+    background-color: rgba(230, 230, 230, 0.20);
+    border-color: var(--tb-peach);
+    box-shadow: 0 0 0 .2rem rgba(247, 185, 128, 0.35);
+    color: var(--tb-text);
+  }
+  .input-group .btn {
+    border-color: rgba(230, 230, 230, 0.35);
+    color: var(--tb-text);
+    background: rgba(230,230,230,0.08);
+  }
+  .input-group .btn:hover {
+    border-color: var(--tb-peach);
+    color: var(--tb-peach);
+    background: rgba(247,185,128,0.10);
+  }
+  .form-check-input {
+    border-color: rgba(230,230,230,0.35); background-color: transparent;
+  }
+  .form-check-input:checked { background-color: var(--tb-coral); border-color: var(--tb-coral); }
+  .form-check-input:focus {
+    box-shadow: 0 0 0 .2rem rgba(237, 152, 95, 0.35); border-color: var(--tb-coral);
+  }
+  .form-check-label { color: var(--tb-muted); }
+  .btn-primary {
+    --bs-btn-bg: var(--tb-coral);
+    --bs-btn-border-color: var(--tb-coral);
+    --bs-btn-hover-bg: #e48752;
+    --bs-btn-hover-border-color: #e48752;
+    --bs-btn-color: var(--tb-navy);
+    --bs-btn-hover-color: var(--tb-navy);
+    box-shadow: 0 6px 16px rgba(237,152,95,0.30);
+  }
+  .btn-success {
+    --bs-btn-bg: var(--tb-peach);
+    --bs-btn-border-color: var(--tb-peach);
+    --bs-btn-hover-bg: #f5a869;
+    --bs-btn-hover-border-color: #f5a869;
+    --bs-btn-color: var(--tb-navy);
+    --bs-btn-hover-color: var(--tb-navy);
+    box-shadow: 0 6px 16px rgba(247,185,128,0.28);
+  }
+</style>
+}
+
+<div class="auth-bg">
+  <div class="auth-card p-4 p-md-4 shadow">
+    <!-- Brand with logo -->
+    <div class="brand-line mb-3">
+            <a href="/Home/Index">
+                <img src="~/assets/logo.png" class="title">
+            </a>
+    </div>
+
+    <!-- Tabs -->
+    <ul class="nav nav-pills justify-content-center mb-4" role="tablist">
+      <li class="nav-item">
+        <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#signin">
+          <i class="bi bi-box-arrow-in-right"></i> Sign In
+        </button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#signup">
+          <i class="bi bi-person-plus"></i> Sign Up
+        </button>
+      </li>
+    </ul>
+
+    <!-- Tab Content -->
+    <div class="tab-content">
+      <!-- SIGN IN -->
+      <div class="tab-pane fade show active" id="signin">
+                <form class="needs-validation" novalidate>
+        SignIn
+          @Html.AntiForgeryToken()
+
+          <div class="mb-3">
+            <label for="signinEmail">Email</label>
+            <input id="signinEmail" type="email" name="Email" class="form-control" placeholder="you@example.com" required />
+            <div class="invalid-feedback">Enter a valid email</div>
+          </div>
+
+          <div class="mb-3">
+            <label for="signinPass">Password</label>
+            <div class="input-group">
+              <input type="password" class="form-control" id="signinPass" name="Password" placeholder="Your password" required />
+              <button class="btn btn-outline-secondary toggle-pass" type="button" data-target="signinPass" aria-label="Toggle password visibility">
+                <i class="bi bi-eye"></i>
+              </button>
+            </div>
+            <div class="invalid-feedback">Password required</div>
+          </div>
+
+          <button class="btn btn-primary w-100" type="submit">Sign In</button>
+        </form>
+      </div>
+
+      <!-- SIGN UP -->
+      <div class="tab-pane fade" id="signup">
+                <form class="needs-validation" novalidate>
+        SignUp
+          @Html.AntiForgeryToken()
+
+          <div class="mb-3">
+            <label for="signupName">Full Name</label>
+            <input id="signupName" type="text" name="FullName" class="form-control" placeholder="Jane Doe" required />
+          </div>
+
+          <div class="mb-3">
+            <label for="signupEmail">Email</label>
+            <input id="signupEmail" type="email" name="Email" class="form-control" placeholder="jane@example.com" required />
+          </div>
+
+          <div class="mb-3">
+            <label for="signupPass">Password</label>
+            <input type="password" class="form-control" id="signupPass" name="Password" minlength="8" placeholder="At least 8 characters" required />
+          </div>
+
+          <div class="mb-3">
+            <label for="confirmPass">Confirm Password</label>
+            <input type="password" class="form-control" id="confirmPass" name="ConfirmPassword" placeholder="Re-enter password" required />
+            <div class="invalid-feedback">Passwords must match</div>
+          </div>
+
+          <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" id="termsCheck" required />
+            <label class="form-check-label" for="termsCheck">Agree to terms</label>
+          </div>
+
+          <button class="btn btn-success w-100" type="submit">Create Account</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+@section Scripts {
+<script>
+  // Password toggle
+  document.querySelectorAll('.toggle-pass').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const input = document.getElementById(btn.dataset.target);
+      const isPassword = input.type === 'password';
+      input.type = isPassword ? 'text' : 'password';
+      btn.innerHTML = isPassword
+        ? '<i class="bi bi-eye-slash"></i>'
+        : '<i class="bi bi-eye"></i>';
+    });
+  });
+
+  // Bootstrap validation
+  (() => {
+    const forms = document.querySelectorAll('.needs-validation');
+    Array.from(forms).forEach(form => {
+      form.addEventListener('submit', event => {
+        const signupPass = form.querySelector('#signupPass');
+        const confirmPass = form.querySelector('#confirmPass');
+        if (signupPass && confirmPass) {
+          if (confirmPass.value !== signupPass.value) {
+            confirmPass.setCustomValidity('Passwords must match');
+          } else {
+            confirmPass.setCustomValidity('');
+          }
+        }
+        if (!form.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  })();
+</script>
+}
