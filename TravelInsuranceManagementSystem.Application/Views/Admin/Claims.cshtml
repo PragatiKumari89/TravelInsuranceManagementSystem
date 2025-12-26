@@ -1,90 +1,8 @@
-﻿@* @{
+﻿@{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
-    ViewData["Title"] = "Claims";
+    //ViewData["Title"] = "Claims";
 }
 
-<h2 class="page-title">Claims</h2>
-
-<div class="filters mb-12">
-    <select class="select">
-        <option>All Status</option>
-        <option>Open</option>
-        <option>Approved</option>
-        <option>Rejected</option>
-    </select>
-    <select class="select">
-        <option>Coverage Type</option>
-        <option>Medical</option>
-        <option>Trip Cancellation</option>
-        <option>Lost Luggage</option>
-    </select>
-    <div></div>
-    <div></div>
-    <input class="input" placeholder="Search..." />
-</div>
-
-<div class="row-between mb-12">
-    <button class="btn btn-outline">Apply Filters</button>
-</div>
-
-<div class="card">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Policy ID</th>
-                <th>Plan</th>
-                <th>Coverage Type</th>
-                <th>Amount</th>
-                <th>Date</th>
-                <th>Status</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>P01842</td>
-                <td>Basic</td>
-                <td>Medical</td>
-                <td>$5,500</td>
-                <td>2023-05-10</td>
-                <td><span class="badge badge-open">Open</span></td>
-                <td><a>#View</a></td>
-            </tr>
-            <tr>
-                <td>P01037</td>
-                <td>Premium</td>
-                <td>Trip Cancellation</td>
-                <td>$2,200</td>
-                <td>2023-09-01</td>
-                <td><span class="badge badge-approved">Approved</span></td>
-                <td><a>#View</a></td>
-            </tr>
-            <tr>
-                <td>P01016</td>
-                <td>Premium</td>
-                <td>Medical</td>
-                <td>$3,200</td>
-                <td>2024-01-17</td>
-                <td><span class="badge badge-rejected">Rejected</span></td>
-                <td>#View</a></td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-
- *@
-
-
-
-
-
-
-
-
-@{
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
-    ViewData["Title"] = "Claims";
-}
 <div class="d-flex align-items-center justify-content-between mb-3">
     <h2 class="m-0">Claims</h2>
     <div class="btn-group" role="group">
@@ -107,12 +25,54 @@
 <div class="table-responsive">
     <table id="claimsTable" class="table table-hover align-middle mb-0">
         <thead class="table-light">
-            <tr><th>Policy ID</th><th>Plan</th><th>Coverage Type</th><th>Amount</th><th>Date</th><th>Status</th><th>Actions</th></tr>
+            <tr>
+                <th>Policy ID</th>
+                <th>Customer ID</th>
+                <th>Customer Name</th>
+                <th>Plan</th>
+                <th>Coverage Type</th>
+                <th>Amount</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Agent</th>
+            </tr>
         </thead>
         <tbody>
-            <tr data-status="Open"><td>P01842</td><td>Basic</td><td>Medical</td><td>$5,500</td><td>2023-05-10</td><td><span class="badge-pill badge-open">Open</span></td><td>#View</td></tr>
-            <tr data-status="Approved"><td>P01037</td><td>Premium</td><td>Trip Cancellation</td><td>$2,200</td><td>2023-09-01</td><td><span class="badge-pill badge-approved">Approved</span></td><td>#View</td></tr>
-            <tr data-status="Rejected"><td>P01016</td><td>Premium</td><td>Medical</td><td>$3,200</td><td>2024-01-17</td><td><span class="badge-pill badge-rejected">Rejected</span></td><td>#View</td></tr>
+            <tr data-status="Open">
+                <td>P01842</td>
+                <td>CUS-8821</td>
+                <td>John Doe</td>
+                <td>Basic</td>
+                <td>Medical</td>
+                <td>$5,500</td>
+                <td>2023-05-10</td>
+                <td><span class="badge-pill badge-open">Open</span></td>
+                <td><span class="text-muted fst-italic">Unassigned</span></td>
+            </tr>
+
+            <tr data-status="Approved">
+                <td>P01037</td>
+                <td>CUS-9932</td>
+                <td>Jane Smith</td>
+                <td>Premium</td>
+                <td>Trip Cancellation</td>
+                <td>$2,200</td>
+                <td>2023-09-01</td>
+                <td><span class="badge-pill badge-approved">Approved</span></td>
+                <td>Sarah Jenkins</td>
+            </tr>
+
+            <tr data-status="Rejected">
+                <td>P01016</td>
+                <td>CUS-7741</td>
+                <td>Michael Scott</td>
+                <td>Premium</td>
+                <td>Medical</td>
+                <td>$3,200</td>
+                <td>2024-01-17</td>
+                <td><span class="badge-pill badge-rejected">Rejected</span></td>
+                <td>Mike Ross</td>
+            </tr>
         </tbody>
     </table>
 </div>

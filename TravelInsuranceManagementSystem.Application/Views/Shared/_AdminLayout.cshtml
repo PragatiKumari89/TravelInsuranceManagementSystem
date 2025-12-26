@@ -1,4 +1,4 @@
-﻿@* @{
+﻿@{
     Layout = null;
 }
 <!DOCTYPE html>
@@ -8,70 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>@ViewData["Title"] - Admin</title>
 
-    <link rel="stylesheet" href="~/css/admin.css" />
-</head>
-<body>
-    <div class="app">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <div class="brand">
-                <span class="brand-dot"></span>
-                <span class="brand-text">Admin</span>
-            </div>
-
-            <nav class="nav">
-                <a href="/Admin/Dashboard" class="nav-item">📊 Dashboard</a>
-                <a href="/Admin/Policies" class="nav-item">📄 Policies</a>
-                <a href="/Admin/Claims" class="nav-item">🧾 Claims</a>
-                <a href="/Admin/Payments" class="nav-item">💳 Payments</a>
-            </nav>
-
-            <div class="nav-bottom">
-                <a href="/Admin/Policies" class="cta">+ Create Policy</a>
-            </div>
-        </aside>
-
-        <!-- Main -->
-        <main class="main">
-            <header class="topbar">
-                <div class="search">
-                    <input type="text" placeholder="Search..." />
-                </div>
-                <div class="user">
-                    <div class="avatar">SJ</div>
-                </div>
-            </header>
-
-            <section class="page">
-                @RenderBody()
-            </section>
-        </main>
-    </div>
-
-    <script src="~/js/admin.js"></script>
-</body>
-</html> *@
-
-
-
-
-
-
-
-@{
-    Layout = null;
-}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>@ViewData["Title"] - Admin</title>
-
-    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Theme (ColorHunt palette) + minimal styles -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
     <style>
         :root {
             --navy: #0E2A47; /* dark navy */
@@ -192,28 +132,32 @@
                 background: var(--navy);
                 color: #fff;
             }
-
-       
     </style>
 </head>
 <body>
     <div class="container-fluid">
         <div class="row">
-            <!-- Sidebar -->
-            <aside class="col-12 col-md-3 col-lg-2 p-3 sidebar">
+            <aside class="col-12 col-md-3 col-lg-2 p-3 sidebar d-flex flex-column">
                 <div class="d-flex align-items-center mb-3">
                     <div class="avatar me-2">SJ</div>
                     <strong style="color:var(--navy)">Admin</strong>
                 </div>
+
                 <nav class="nav flex-column">
                     <a href="/Admin/Dashboard" class="nav-link js-nav">📊 Dashboard</a>
                     <a href="/Admin/Policies" class="nav-link js-nav">📄 Policies</a>
                     <a href="/Admin/Claims" class="nav-link js-nav">🧾 Claims</a>
                     <a href="/Admin/Payments" class="nav-link js-nav">💳 Payments</a>
                 </nav>
+
+                <div class="mt-auto pt-3 border-top">
+                    <a href="@Url.Action("Index", "Home")" class="btn btn-outline-danger w-100 d-flex align-items-center justify-content-center gap-2">
+                        <i class="bi bi-box-arrow-right"></i>
+                        Logout
+                    </a>
+                </div>
             </aside>
 
-            <!-- Main -->
             <main class="col-12 col-md-9 col-lg-10 p-0">
                 <header class="topbar d-flex align-items-center justify-content-between px-3 py-2">
                     <div class="fw-semibold" style="color:var(--navy)">@ViewData["Title"]</div>
@@ -227,11 +171,9 @@
         </div>
     </div>
 
-    <!-- jQuery + Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Shared minimal JS: nav highlight + search/filter/export + policies filters -->
     <script>
         // Highlight active nav
         (function(){
@@ -331,4 +273,3 @@
     </script>
 </body>
 </html>
-

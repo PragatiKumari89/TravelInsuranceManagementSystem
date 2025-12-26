@@ -1,94 +1,8 @@
-﻿@* @{
+﻿@{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
-    ViewData["Title"] = "Payments";
+    //ViewData["Title"] = "Payments";
 }
 
-<h2 class="page-title">Payments</h2>
-
-<div class="filters mb-12">
-    <select class="select">
-        <option>Status</option>
-        <option>Success</option>
-        <option>Pending</option>
-        <option>Failed</option>
-    </select>
-    <input class="input" placeholder="From" />
-    <input class="input" placeholder="To" />
-    <input class="input" placeholder="Search..." />
-    <div></div>
-</div>
-
-<div class="row-between mb-12">
-    <button class="btn btn-primary">Apply Filters</button>
-</div>
-
-<div class="card">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>User ID</th>
-                <th>Policy ID</th>
-                <th>Plan</th>
-                <th>Amount</th>
-                <th>Start Date</th>
-                <th>End Date</th>
-                <th>Date</th>
-                <th>Status</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>U001</td>
-                <td>P01015</td>
-                <td>Basic</td>
-                <td>$3,500</td>
-                <td>2023-04-01</td>
-                <td>2024-04-01</td>
-                <td>2023-04-02</td>
-                <td><span class="badge badge-approved">Success</span></td>
-                <td>#View</a></td>
-            </tr>
-            <tr>
-                <td>U002</td>
-                <td>P01116</td>
-                <td>Premium</td>
-                <td>$2,200</td>
-                <td>2023-04-01</td>
-                <td>2023-04-01</td>
-                <td>2023-04-01</td>
-                <td><span class="badge badge-pending">Pending</span></td>
-                <td>#View</a></td>
-            </tr>
-            <tr>
-                <td>U003</td>
-                <td>P01037</td>
-                <td>Premium</td>
-                <td>$1,580</td>
-                <td>2023-11-20</td>
-                <td>2024-11-20</td>
-                <td>2023-11-20</td>
-                <td><span class="badge badge-rejected">Failed</span></td>
-                <td>#View</a></td>
-            </tr>
-        </tbody>
-    </table>
-</div>
- *@
-
-
-
-
-
-
-
-
-
-
-@{
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
-    ViewData["Title"] = "Payments";
-}
 <div class="d-flex align-items-center justify-content-between mb-3">
     <h2 class="m-0">Payments</h2>
     <div class="btn-group" role="group">
@@ -114,19 +28,49 @@
             <tr>
                 <th>User ID</th>
                 <th>Policy ID</th>
+                <th>Payment ID</th>
                 <th>Plan</th>
                 <th>Amount</th>
                 <th>Start Date</th>
                 <th>End Date</th>
                 <th>Date</th>
                 <th>Status</th>
-                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-            <tr data-status="Success"><td>U001</td><td>P01015</td><td>Basic</td><td>$3,500</td><td>2023-04-01</td><td>2024-04-01</td><td>2023-04-02</td><td><span class="badge-pill badge-approved">Success</span></td><td>#View</td></tr>
-            <tr data-status="Pending"><td>U002</td><td>P01116</td><td>Premium</td><td>$2,200</td><td>2023-04-01</td><td>2023-04-01</td><td>2023-04-01</td><td><span class="badge-pill badge-pending">Pending</span></td><td>#View</td></tr>
-            <tr data-status="Failed"><td>U003</td><td>P01037</td><td>Premium</td><td>$1,580</td><td>2023-11-20</td><td>2024-11-20</td><td>2023-11-20</td><td><span class="badge-pill badge-rejected">Failed</span></td><td>#View</td></tr>
+            <tr data-status="Success">
+                <td>U001</td>
+                <td>P01015</td>
+                <td>PAY-8821</td>
+                <td>Basic</td>
+                <td>₹3,500</td>
+                <td>2023-04-01</td>
+                <td>2024-04-01</td>
+                <td>2023-04-02</td>
+                <td><span class="badge-pill badge-approved">Success</span></td>
+            </tr>
+            <tr data-status="Pending">
+                <td>U002</td>
+                <td>P01116</td>
+                <td>PAY-9932</td>
+                <td>Premium</td>
+                <td>₹2,200</td>
+                <td>2023-04-01</td>
+                <td>2023-04-01</td>
+                <td>2023-04-01</td>
+                <td><span class="badge-pill badge-pending">Pending</span></td>
+            </tr>
+            <tr data-status="Failed">
+                <td>U003</td>
+                <td>P01037</td>
+                <td>PAY-7741</td>
+                <td>Premium</td>
+                <td>₹1,580</td>
+                <td>2023-11-20</td>
+                <td>2024-11-20</td>
+                <td>2023-11-20</td>
+                <td><span class="badge-pill badge-rejected">Failed</span></td>
+            </tr>
         </tbody>
     </table>
 </div>

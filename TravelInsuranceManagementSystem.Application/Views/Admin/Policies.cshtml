@@ -1,103 +1,14 @@
-﻿@* @{
+﻿@{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
-    ViewData["Title"] = "Policies";
+    //ViewData["Title"] = "Policies";
 }
 
-<h2 class="page-title">Policies</h2>
+@* REMOVED: The d-flex container and the create policy button *@
+<h2 class="mb-3">Policies</h2>
 
-<div class="filters mb-12">
-    <select class="select">
-        <option>All Status</option>
-        <option>Active</option>
-        <option>Expired</option>
-        <option>Cancelled</option>
-    </select>
-    <select class="select">
-        <option>Country</option>
-        <option>Italy</option>
-        <option>Japan</option>
-        <option>Spain</option>
-        <option>United Kingdom</option>
-        <option>Canada</option>
-    </select>
-    <select class="select">
-        <option>Coverage Type</option>
-        <option>Medical</option>
-        <option>Trip Cancellation</option>
-        <option>Lost Luggage</option>
-    </select>
-    <input class="input" placeholder="From" />
-    <input class="input" placeholder="To" />
-</div>
-
-<div class="row-between mb-12">
-    <button class="btn btn-primary">+ Create Policy</button>
-    <button class="btn btn-outline">Apply Filters</button>
-</div>
-
-<div class="card">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Policy Number</th>
-                <th>Country</th>
-                <th>Start Date</th>
-                <th>End Date</th>
-                <th>Plan</th>
-                <th>Policy Status</th>
-                <th>Claim Status</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>P01042</td>
-                <td>Italy</td>
-                <td>2023-05-01</td>
-                <td>2023-05-15</td>
-                <td>Basic</td>
-                <td><span class="badge badge-approved">Active</span></td>
-                <td><span class="badge badge-open">Open</span></td>
-                <td>#View<a> · #Edit</a></td>
-            </tr>
-            <tr>
-                <td>P01037</td>
-                <td>Japan</td>
-                <td>2023-08-10</td>
-                <td>2023-09-25</td>
-                <td>Premium</td>
-                <td><span class="badge badge-pending">Expired</span></td>
-                <td><span class="badge badge-rejected">Rejected</span></td>
-                <td>#View<a> · #Edit</a></td>
-            </tr>
-            <tr>
-                <td>P01016</td>
-                <td>United Kingdom</td>
-                <td>2024-01-05</td>
-                <td>2024-01-14</td>
-                <td>Premium</td>
-                <td><span class="badge badge-approved">Active</span></td>
-                <td><span class="badge badge-open">Approve</span></td>
-                <td>#View<a> · #Edit</a></td>
-            </tr>
-        </tbody>
-    </table>
-</div>
- *@
-
-
-
-@{
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
-    ViewData["Title"] = "Policies";
-}
-<div class="d-flex align-items-center justify-content-between mb-3">
-    <h2 class="m-0">Policies</h2>
-    <button class="btn btn-primary">+ Create Policy</button>
-</div>
-
+@* MODIFIED: Removed the Apply Filters button column and adjusted column sizes to col-lg-4 for better spacing *@
 <div class="row g-2 mb-3">
-    <div class="col-12 col-sm-6 col-lg-3">
+    <div class="col-12 col-sm-6 col-lg-4">
         <select id="policyStatus" class="form-select">
             <option value="All">All Status</option>
             <option value="Active">Active</option>
@@ -105,7 +16,7 @@
             <option value="Cancelled">Cancelled</option>
         </select>
     </div>
-    <div class="col-12 col-sm-6 col-lg-3">
+    <div class="col-12 col-sm-6 col-lg-4">
         <select id="policyCountry" class="form-select">
             <option value="All">Country</option>
             <option>Italy</option>
@@ -115,7 +26,7 @@
             <option>Canada</option>
         </select>
     </div>
-    <div class="col-12 col-sm-6 col-lg-3">
+    <div class="col-12 col-sm-6 col-lg-4">
         <select id="policyCoverage" class="form-select">
             <option value="All">Coverage Type</option>
             <option>Medical</option>
@@ -123,9 +34,7 @@
             <option>Lost Luggage</option>
         </select>
     </div>
-    <div class="col-12 col-sm-6 col-lg-3 d-grid">
-        <button id="policyApply" class="btn btn-outline-primary">Apply Filters</button>
-    </div>
+    @* REMOVED: The column containing the Apply Filters button *@
 </div>
 
 <div class="table-responsive">
@@ -133,57 +42,59 @@
         <thead class="table-light">
             <tr>
                 <th>Policy Number</th>
+                @* ADDED: New columns for Customer ID and Name *@
+                <th>Customer ID</th>
+                <th>Customer Name</th>
                 <th>Country</th>
                 <th>Start Date</th>
                 <th>End Date</th>
                 <th>Plan</th>
                 <th>Policy Status</th>
-                <th>Claim Status</th>
-                <th>Actions</th>
+                @* REMOVED: Claim Status and Actions columns *@
             </tr>
         </thead>
         <tbody>
+            @* MODIFIED ROWS: Added Customer data slots, removed Claim Status and Actions data slots *@
             <tr data-status="active" data-country="italy" data-coverage="basic medical">
                 <td>P01042</td>
+                <td>CUST-101</td> @* Placeholder Data *@
+                <td>Mario Rossi</td> @* Placeholder Data *@
                 <td>Italy</td>
                 <td>2023-05-01</td>
                 <td>2023-05-15</td>
                 <td>Basic</td>
                 <td><span class="badge-pill badge-approved">Active</span></td>
-                <td><span class="badge-pill badge-open">Open</span></td>
-                <td>#View · #Edit</td>
             </tr>
             <tr data-status="expired" data-country="japan" data-coverage="premium trip cancellation">
                 <td>P01037</td>
+                <td>CUST-102</td> @* Placeholder Data *@
+                <td>Kenji Tanaka</td> @* Placeholder Data *@
                 <td>Japan</td>
                 <td>2023-08-10</td>
                 <td>2023-09-25</td>
                 <td>Premium</td>
                 <td><span class="badge-pill badge-pending">Expired</span></td>
-                <td><span class="badge-pill badge-rejected">Rejected</span></td>
-                <td>#View · #Edit</td>
             </tr>
             <tr data-status="active" data-country="united kingdom" data-coverage="premium medical">
                 <td>P01016</td>
+                <td>CUST-103</td> @* Placeholder Data *@
+                <td>Sarah Smith</td> @* Placeholder Data *@
                 <td>United Kingdom</td>
                 <td>2024-01-05</td>
                 <td>2024-01-14</td>
                 <td>Premium</td>
                 <td><span class="badge-pill badge-approved">Active</span></td>
-                <td><span class="badge-pill badge-open">Approve</span></td>
-                <td>#View · #Edit</td>
             </tr>
             <tr data-status="cancelled" data-country="canada" data-coverage="basic medical">
                 <td>P00887</td>
+                <td>CUST-104</td> @* Placeholder Data *@
+                <td>Jean Tremblay</td> @* Placeholder Data *@
                 <td>Canada</td>
                 <td>2024-03-15</td>
                 <td>2024-04-05</td>
                 <td>Basic</td>
                 <td><span class="badge-pill badge-rejected">Cancelled</span></td>
-                <td><span class="badge-pill badge-open">Rejected</span></td>
-                <td>#View · #Edit</td>
             </tr>
         </tbody>
     </table>
 </div>
-
