@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Mvc;
 
 namespace TravelInsuranceManagementSystem.Application.Controllers
 {
@@ -27,6 +28,16 @@ namespace TravelInsuranceManagementSystem.Application.Controllers
         public IActionResult SupportTickets()
         {
             return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+            // Sign out of the authentication scheme
+            await HttpContext.SignOutAsync();
+
+            // Redirect to Sign In
+            return RedirectToAction("SignIn", "Home");
         }
     }
 }

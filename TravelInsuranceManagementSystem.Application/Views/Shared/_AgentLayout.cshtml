@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -9,179 +10,218 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
     <style>
+
         /* ===== GLOBAL ===== */
-        body {
-            background: #f6f8fc;
-            font-family: "Segoe UI", sans-serif;
-            color: #2c2c2c;
+                body {
+                        background: #f6f8fc;
+                        font-family: "Segoe UI", sans-serif;
+                        color: #2c2c2c;
+
         }
+
 
         /* ===== SIDEBAR ===== */
-        .sidebar {
-            width: 260px;
-            min-height: 100vh;
-            background: linear-gradient(180deg,#0b1d3a,#142c55);
-            color: white;
-            padding: 25px 15px;
-            position: fixed;
+                .sidebar {
+                        width: 260px;
+                        min-height: 100vh;
+                        background: linear-gradient(180deg,#0b1d3a,#142c55);
+                        color: white;
+                        padding: 25px 15px;
+                        position: fixed;
+
         }
 
-        .brand {
-            font-size: 22px;
-            font-weight: 700;
-            margin-bottom: 30px;
-            text-align: center;
+                .brand {
+                        font-size: 22px;
+                        font-weight: 700;
+                        margin-bottom: 30px;
+                        text-align: center;
+
         }
 
-            .brand span {
-                color: #f4b740;
-            }
+                    .brand span {
+                            color: #f4b740;
 
-        .menu a {
-            display: block;
-            padding: 12px 18px;
-            margin-bottom: 10px;
-            border-radius: 10px;
-            color: #e6e6e6;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all .3s;
         }
 
-            .menu a:hover {
-                background: #1f3b6f;
-                color: white;
-            }
+                .menu a {
+                        display: block;
+                        padding: 12px 18px;
+                        margin-bottom: 10px;
+                        border-radius: 10px;
+                        color: #e6e6e6;
+                        text-decoration: none;
+                        font-weight: 500;
+                        transition: all .3s;
 
-            .menu a.active {
-                background: #f4b740;
-                color: #000;
-                font-weight: 600;
-                box-shadow: 0 4px 12px rgba(244,183,64,.6);
-            }
+        }
+
+                    .menu a:hover {
+                            background: #1f3b6f;
+                            color: white;
+
+        }
+
+                    .menu a.active {
+                            background: #f4b740;
+                            color: #000;
+                            font-weight: 600;
+                            box-shadow: 0 4px 12px rgba(244,183,64,.6);
+
+        }
+
 
         /* ===== LOGOUT ===== */
-        .logout {
-            margin-top: 40px;
-            padding: 10px;
-            border-radius: 10px;
-            border: 1px solid #f4b740;
-            background: transparent;
-            color: #f4b740;
-            text-align: center;
-            cursor: pointer;
-            transition: .3s;
+                .logout {
+                        margin-top: 40px;
+                        padding: 10px;
+                        border-radius: 10px;
+                        border: 1px solid #f4b740;
+                        background: transparent;
+                        color: #f4b740;
+                        text-align: center;
+                        cursor: pointer;
+                        transition: .3s;
+
         }
 
-            .logout:hover {
-                background: #f4b740;
-                color: #000;
-            }
+                    .logout:hover {
+                            background: #f4b740;
+                            color: #000;
+
+        }
+
 
         /* ===== CONTENT ===== */
-        .content {
-            margin-left: 280px;
-            padding: 30px;
+                .content {
+                        margin-left: 280px;
+                        padding: 30px;
+
         }
+
 
         /* ===== TITLES ===== */
-        .page-title {
-            font-size: 24px;
-            font-weight: 700;
-            color: #1e1e2f;
-            margin-bottom: 15px;
+                .page-title {
+                        font-size: 24px;
+                        font-weight: 700;
+                        color: #1e1e2f;
+                        margin-bottom: 15px;
+
         }
+
 
         /* ===== SEARCH ===== */
-        .form-control {
-            border-radius: 10px;
-            border: 1px solid #dce1f0;
-            padding: 10px 14px;
+                .form-control {
+                        border-radius: 10px;
+                        border: 1px solid #dce1f0;
+                        padding: 10px 14px;
+
         }
 
-            .form-control:focus {
-                box-shadow: 0 0 0 3px rgba(244,183,64,.25);
-                border-color: #f4b740;
-            }
+                    .form-control:focus {
+                            box-shadow: 0 0 0 3px rgba(244,183,64,.25);
+                            border-color: #f4b740;
+
+        }
+
 
         /* ===== TABLE ===== */
-        .table {
-            background: white;
-            border-radius: 14px;
-            overflow: hidden;
-            box-shadow: 0 6px 18px rgba(0,0,0,.08);
+                .table {
+                        background: white;
+                        border-radius: 14px;
+                        overflow: hidden;
+                        box-shadow: 0 6px 18px rgba(0,0,0,.08);
+
         }
 
-            .table th {
-                background: #f1f4fa;
-                color: #000;
-                font-weight: 600;
-            }
+                    .table th {
+                            background: #f1f4fa;
+                            color: #000;
+                            font-weight: 600;
 
-            .table td {
-                color: #333;
-                vertical-align: middle;
-            }
+        }
+
+                    .table td {
+                            color: #333;
+                            vertical-align: middle;
+
+        }
+
 
         /* ===== BADGES ===== */
-        .badge {
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
+                .badge {
+                        padding: 6px 14px;
+                        border-radius: 20px;
+                        font-size: 12px;
+                        font-weight: 600;
+
         }
 
-        .badge-open {
-            background: #fff3cd;
-            color: #856404;
+                .badge-open {
+                        background: #fff3cd;
+                        color: #856404;
+
         }
 
-        .badge-approved {
-            background: #d4edda;
-            color: #155724;
+                .badge-approved {
+                        background: #d4edda;
+                        color: #155724;
+
         }
 
-        .badge-rejected {
-            background: #f8d7da;
-            color: #721c24;
+                .badge-rejected {
+                        background: #f8d7da;
+                        color: #721c24;
+
         }
 
-        .badge-active {
-            background: #d1ecf1;
-            color: #0c5460;
+                .badge-active {
+                        background: #d1ecf1;
+                        color: #0c5460;
+
         }
 
-        .badge-expired {
-            background: #e2e3e5;
-            color: #383d41;
+                .badge-expired {
+                        background: #e2e3e5;
+                        color: #383d41;
+
         }
 
-        .badge-cancelled {
-            background: #f5c6cb;
-            color: #721c24;
+                .badge-cancelled {
+                        background: #f5c6cb;
+                        color: #721c24;
+
         }
+
 
         /* ===== PLAN ===== */
-        .plan-basic {
-            font-weight: 600;
-            color: #495057;
+                .plan-basic {
+                        font-weight: 600;
+                        color: #495057;
+
         }
 
-        .plan-premium {
-            font-weight: 700;
-            color: #1a73e8;
+                .plan-premium {
+                        font-weight: 700;
+                        color: #1a73e8;
+
         }
+
 
         /* ===== FILTER BUTTONS ===== */
-        .filter-btn {
-            border-radius: 20px;
-            margin-left: 5px;
+                .filter-btn {
+                        border-radius: 20px;
+                        margin-left: 5px;
+
         }
 
-            .filter-btn.active {
-                background: #1a73e8;
-                color: white;
-            }
+                    .filter-btn.active {
+                            background: #1a73e8;
+                            color: white;
+
+        }
+
+
     </style>
 </head>
 
@@ -193,34 +233,51 @@
 
         <div class="menu">
             <a asp-controller="Agent" asp-action="Dashboard"
-               class="@(ViewContext.RouteData.Values["action"]?.ToString() == "Dashboard" ? "active" : "")">
+                       class="@(ViewContext.RouteData.Values["action"]?.ToString() == "Dashboard" ? "active" : "")">
                 Dashboard
             </a>
 
             <a asp-controller="Agent" asp-action="Policies"
-               class="@(ViewContext.RouteData.Values["action"]?.ToString() == "Policies" ? "active" : "")">
+                       class="@(ViewContext.RouteData.Values["action"]?.ToString() == "Policies" ? "active" : "")">
                 Policies
             </a>
 
             <a asp-controller="Agent" asp-action="Claims"
-               class="@(ViewContext.RouteData.Values["action"]?.ToString() == "Claims" ? "active" : "")">
+                       class="@(ViewContext.RouteData.Values["action"]?.ToString() == "Claims" ? "active" : "")">
                 Claims
             </a>
 
             <a asp-controller="Agent" asp-action="Payments"
-               class="@(ViewContext.RouteData.Values["action"]?.ToString() == "Payments" ? "active" : "")">
+                       class="@(ViewContext.RouteData.Values["action"]?.ToString() == "Payments" ? "active" : "")">
                 Payments
             </a>
 
             <a asp-controller="Agent" asp-action="SupportTickets"
-               class="@(ViewContext.RouteData.Values["action"]?.ToString() == "SupportTickets" ? "active" : "")">
+                       class="@(ViewContext.RouteData.Values["action"]?.ToString() == "SupportTickets" ? "active" : "")">
                 Support Tickets
             </a>
         </div>
 
-        <div class="logout"
-             onclick="window.location.href='/'">
+        <div class="logout" id="btnLogout">
             Logout
+        </div>
+    </div>
+
+    <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="logoutModalLabel">Confirm Logout</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to log out of your agent account?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger" id="confirmLogoutBtn">Logout</button>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -230,6 +287,32 @@
     </div>
 
     @RenderSection("Scripts", required: false)
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // 1. When the sidebar logout link is clicked
+            $('#btnLogout').on('click', function () {
+                // Show the Bootstrap modal
+                var myModal = new bootstrap.Modal(document.getElementById('logoutModal'));
+                myModal.show();
+            });
 
+            // 2. When the user confirms logout inside the modal
+            $('#confirmLogoutBtn').on('click', function () {
+                // Visual feedback
+                $(this).prop('disabled', true).text('Logging out...');
+
+                // Clear data
+                localStorage.clear();
+                sessionStorage.clear();
+
+                // Optional: If you have a server-side logout route
+                // $.post('/Account/Logout', function() { ... });
+
+                // Redirect to Home/SignIn
+                window.location.href = '@Url.Action("SignIn", "Home")';
+            });
+        });
+    </script>
 </body>
 </html>

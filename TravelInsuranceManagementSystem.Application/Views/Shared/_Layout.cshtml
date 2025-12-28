@@ -19,9 +19,9 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
             <div class="container">
-                <a class="navbar-brand" href="/Home/SignIn">
+                <a class="navbar-brand" href="/Home/Index">
                     <img class="logo-img" src="~/assets/logo.png" alt="TravelBuddy">
-                    <span>TravelBuddy</span>
+                    <span class="text-light">TravelBuddy</span>
                 </a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#tbNav">
@@ -160,7 +160,7 @@
                     } else if (userRole === "Agent") {
                         window.location.href = '/Agent/Dashboard';
                     } else {
-                        window.location.href = '/User/Dashboard';
+                        window.location.href = '/UserDashboard/Dashboard';
                     }
                 });
 
