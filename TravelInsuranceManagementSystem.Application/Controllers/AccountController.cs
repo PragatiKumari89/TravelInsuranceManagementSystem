@@ -87,7 +87,10 @@ namespace TravelInsuranceManagementSystem.Application.Controllers
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 2c20d9fa570772274f1fb1bbeb45964d1ba10606
         // --- FORGOT PASSWORD LOGIC ---
 
         [HttpGet]
@@ -148,7 +151,10 @@ namespace TravelInsuranceManagementSystem.Application.Controllers
             return RedirectToAction("SignIn");
         }
 
+<<<<<<< HEAD
 >>>>>>> upstream/main
+=======
+>>>>>>> 2c20d9fa570772274f1fb1bbeb45964d1ba10606
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
