@@ -25,7 +25,6 @@ namespace TravelInsuranceManagementSystem.Application.Controllers
         {
             var user = _context.Users.FirstOrDefault(u => u.Email == Email);
 
-            // Verify Password using BCrypt
             if (user != null && BCrypt.Net.BCrypt.Verify(Password, user.Password))
             {
                 var claims = new List<Claim>
@@ -49,12 +48,8 @@ namespace TravelInsuranceManagementSystem.Application.Controllers
                         ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(60)
                     });
 
-                // Role-based redirection logic
-                if (user.Role == "Admin")
-                    return RedirectToAction("Dashboard", "Admin");
-
-                if (user.Role == "Agent")
-                    return RedirectToAction("Dashboard", "Agent");
+                if (user.Role == "Admin") return RedirectToAction("Dashboard", "Admin");
+                if (user.Role == "Agent") return RedirectToAction("Dashboard", "Agent");
 
                 return RedirectToAction("Dashboard", "UserDashboard");
             }
@@ -67,6 +62,12 @@ namespace TravelInsuranceManagementSystem.Application.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult SignUp(User user)
         {
+            if (!ModelState.IsValid)
+            {
+                TempData["ErrorMessage"] = "Please fix the validation errors.";
+                return View("~/Views/Home/SignIn.cshtml", user);
+            }
+
             if (_context.Users.Any(u => u.Email == user.Email))
             {
                 TempData["ErrorMessage"] = "Email already registered!";
@@ -85,6 +86,69 @@ namespace TravelInsuranceManagementSystem.Application.Controllers
             return RedirectToAction("SignIn");
         }
 
+<<<<<<< HEAD
+=======
+        // --- FORGOT PASSWORD LOGIC ---
+
+        [HttpGet]
+        public IActionResult ForgotPassword() => View();
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult ForgotPassword(string email)
+        {
+            var user = _context.Users.FirstOrDefault(u => u.Email == email);
+            if (user == null)
+            {
+                ViewBag.Error = "Email address not found.";
+                return View();
+            }
+            // In a real system, you'd send an email here. 
+            // For now, we redirect to reset directly for this specific email.
+            return RedirectToAction("ResetPassword", new { email = email });
+        }
+
+        [HttpGet]
+        public IActionResult ResetPassword(string email)
+        {
+            ViewBag.Email = email;
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult ResetPassword(string email, string newPassword, string confirmPassword)
+        {
+            if (newPassword != confirmPassword)
+            {
+                ViewBag.Error = "Passwords do not match.";
+                ViewBag.Email = email;
+                return View();
+            }
+
+            var user = _context.Users.FirstOrDefault(u => u.Email == email);
+            if (user != null)
+            {
+                // Re-verify strict password rules manually for safety
+                var regex = new System.Text.RegularExpressions.Regex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$");
+                if (!regex.IsMatch(newPassword))
+                {
+                    ViewBag.Error = "Password must have 1 Uppercase, 1 Lowercase, 1 Number, and 1 Special Character.";
+                    ViewBag.Email = email;
+                    return View();
+                }
+
+                user.Password = BCrypt.Net.BCrypt.HashPassword(newPassword);
+                _context.Update(user);
+                _context.SaveChanges();
+
+                TempData["SuccessMessage"] = "Password updated successfully!";
+                return RedirectToAction("SignIn");
+            }
+            return RedirectToAction("SignIn");
+        }
+
+>>>>>>> upstream/main
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
