@@ -12,7 +12,6 @@ namespace TravelInsuranceManagementSystem.Repo.Models
         public int TicketId { get; set; } 
         public string Subject { get; set; }
         public string Category { get; set; }
-        
         public string Priority { get; set; }
         public string RelatedId { get; set; }
         public string ContactMethod { get; set; }

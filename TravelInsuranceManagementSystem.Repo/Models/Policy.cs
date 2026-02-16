@@ -41,7 +41,9 @@ namespace TravelInsuranceManagementSystem.Repo.Models
 
     public enum PolicyStatus
     {
-        PENDING,
+
+       PENDING,
+
         ACTIVE,
         EXPIRED,
         CANCELLED
