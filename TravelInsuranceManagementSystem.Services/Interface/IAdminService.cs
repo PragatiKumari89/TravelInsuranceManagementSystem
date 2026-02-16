@@ -16,11 +16,10 @@ namespace TravelInsuranceManagementSystem.Services.Interfaces
 
         Task<List<ClaimViewModel>> GetClaimsOverviewAsync();
 
-        // NEW
-
         Task<AdminDashboardViewModel> GetDashboardSummaryAsync();
 
         Task<List<AgentWorkloadViewModel>> GetAgentsWithWorkloadAsync();
+
         Task<bool> DeleteAgentAsync(int userId);
 
     }

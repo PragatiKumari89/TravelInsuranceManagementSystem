@@ -7,7 +7,6 @@ namespace TravelInsuranceManagementSystem.Repo.Interfaces
     public interface IPolicyRepository
 
     {
-
         Policy GetById(int id);
 
         Task<int> CreateFamilyPolicyAsync(FamilyInsuranceDto data, int userId);

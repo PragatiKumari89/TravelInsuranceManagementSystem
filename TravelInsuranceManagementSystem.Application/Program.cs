@@ -68,7 +68,7 @@ builder.Services.AddSession(options =>
 
 var app = builder.Build();
 
-// --- SEEDING LOGIC (UPDATED) ---
+
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
@@ -86,7 +86,7 @@ using (var scope = app.Services.CreateScope())
         logger.LogError(ex, "An error occurred while seeding the database.");
     }
 }
-// -----------------------------
+
 
 if (!app.Environment.IsDevelopment())
 {
@@ -108,7 +108,7 @@ app.MapControllerRoute(
 
 app.Run();
 
-// --- SEEDER CLASS (MOVED HARDCODED VALUES TO CONFIG) ---
+
 public static class SeedData
 {
     public static async Task Initialize(UserManager<User> userManager, RoleManager<IdentityRole<int>> roleManager, IConfiguration configuration)

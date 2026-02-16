@@ -34,7 +34,7 @@ namespace TravelInsuranceManagementSystem.Application.Controllers
 
         }
 
-        // --- UPDATED DASHBOARD METHOD ---
+        //  UPDATED DASHBOARD METHOD
 
         public async Task<IActionResult> Dashboard()
 
@@ -69,7 +69,6 @@ namespace TravelInsuranceManagementSystem.Application.Controllers
         }
 
         [HttpPost]
-
         public async Task<IActionResult> UpdateClaimStatus(int id, string status)
 
         {
@@ -117,7 +116,6 @@ namespace TravelInsuranceManagementSystem.Application.Controllers
         }
 
         [HttpPost]
-
         public async Task<IActionResult> UpdateTicketStatus(int id, string status)
 
         {
@@ -129,7 +127,6 @@ namespace TravelInsuranceManagementSystem.Application.Controllers
         }
 
         [HttpPost]
-
         public async Task<IActionResult> DeleteTicket(int id)
 
         {
@@ -143,7 +140,6 @@ namespace TravelInsuranceManagementSystem.Application.Controllers
         [HttpPost]
 
         [ValidateAntiForgeryToken]
-
         public async Task<IActionResult> Logout()
 
         {

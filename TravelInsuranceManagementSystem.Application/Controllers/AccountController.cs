@@ -6,14 +6,9 @@ using TravelInsuranceManagementSystem.Repo.Models;
 
 using TravelInsuranceManagementSystem.Services.Interfaces;
 
-// We don't add "using System.Security.Claims;" here to avoid conflict with your App's Claim model.
-
-// Instead, we use the fully qualified name inside the method.
-
 namespace TravelInsuranceManagementSystem.Application.Controllers
 
 {
-
     public class AccountController : Controller
 
     {
@@ -95,7 +90,7 @@ namespace TravelInsuranceManagementSystem.Application.Controllers
 
                         new System.Security.Claims.Claim(System.Security.Claims.ClaimTypes.Name, user.Email),
 
-                        // FIX: Add FullName so your dashboards show the Name instead of Email
+                        // Add FullName so your dashboards show the Name instead of Email
 
                         new System.Security.Claims.Claim("FullName", user.FullName ?? user.Email.Split('@')[0])
 

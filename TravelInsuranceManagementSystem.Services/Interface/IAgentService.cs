@@ -22,9 +22,7 @@ namespace TravelInsuranceManagementSystem.Services.Interfaces
 
         Task<bool> UpdateTicketStatusAsync(int id, string status);
 
-        Task<bool> DeleteTicketAsync(int id);
-
-        // NEW
+        Task<bool> DeleteTicketAsync(int id);   
 
         Task<AgentDashboardViewModel> GetDashboardSummaryAsync();
 

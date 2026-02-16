@@ -38,8 +38,6 @@ namespace TravelInsuranceManagementSystem.Services.Implementation
 
             await _agentRepo.DeleteTicketAsync(id);
 
-        // NEW
-
         public async Task<AgentDashboardViewModel> GetDashboardSummaryAsync() =>
 
             await _agentRepo.GetDashboardSummaryAsync();

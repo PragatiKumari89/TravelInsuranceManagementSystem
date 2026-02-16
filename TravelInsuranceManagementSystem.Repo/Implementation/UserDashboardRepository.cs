@@ -2,7 +2,7 @@
 
 using Microsoft.EntityFrameworkCore;
 
-using TravelInsuranceManagementSystem.Models; // Ensure Models are imported if needed
+using TravelInsuranceManagementSystem.Models; 
 
 using TravelInsuranceManagementSystem.Repo.Data;
 
@@ -43,8 +43,7 @@ namespace TravelInsuranceManagementSystem.Repo.Implementation
             var ticket = new SupportTicket
 
             {
-
-                // FIX: Removed .ToString() because UserId is int
+         
 
                 UserId = userId,
 
@@ -113,7 +112,7 @@ namespace TravelInsuranceManagementSystem.Repo.Implementation
 
         }
 
-        // --- NEW UNIFIED LOGIC ---
+        
 
         public async Task<UserDashboardViewModel> GetDashboardSummaryAsync(int userId)
 
@@ -195,9 +194,7 @@ namespace TravelInsuranceManagementSystem.Repo.Implementation
 
             // Tickets
 
-            var recentTickets = await _context.SupportTickets
-
-                // FIX: Removed .ToString()
+            var recentTickets = await _context.SupportTickets               
 
                 .Where(t => t.UserId == userId)
 

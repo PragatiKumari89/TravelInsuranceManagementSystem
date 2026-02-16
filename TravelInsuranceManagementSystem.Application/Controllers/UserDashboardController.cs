@@ -55,6 +55,7 @@ namespace TravelInsuranceManagementSystem.Application.Controllers
         }
 
         [HttpPost]
+
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> RaiseTicket(IFormCollection form)
         {

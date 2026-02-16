@@ -19,6 +19,7 @@ namespace TravelInsuranceManagementSystem.MoqTest.ControllerTest
         private Mock<SignInManager<User>> _signIn = null!;
         private Mock<UserManager<User>> _userManager = null!;
         private Mock<IAccountService> _acc = null!;
+
         private AdminController _ctrl = null!;
 
         [SetUp]

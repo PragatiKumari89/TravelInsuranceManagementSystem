@@ -17,6 +17,7 @@ namespace TravelInsuranceManagementSystem.Application.Controllers
         public IActionResult FamilyInsurance() => View();
 
         [HttpPost]
+
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateFamily([FromBody] FamilyInsuranceDto data)
         {
