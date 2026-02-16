@@ -92,7 +92,7 @@ namespace TravelInsuranceManagementSystem.Repo.Implementation
                     payment.Policy.PolicyStatus = PolicyStatus.ACTIVE;
                     _context.Policies.Update(payment.Policy);
                 }
-                // ----------------------------------------------------
+               
             }
 
             payment.PaymentDate = DateTime.Now;

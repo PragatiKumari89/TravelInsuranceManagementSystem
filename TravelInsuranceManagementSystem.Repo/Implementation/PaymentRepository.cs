@@ -66,11 +66,12 @@ namespace TravelInsuranceManagementSystem.Repo.Implementation
 
         public bool ExecutePaymentProcessing(int paymentId, string cardNumber)
         {
-           
-            var payment = _context.Payments
-                .Include(p => p.Policy)
-                .FirstOrDefault(p => p.PaymentId == paymentId);
-           
+
+            var payment = _context.Payments.Find(paymentId)
+                          ?? _context.Payments
+                              .Include(p => p.Policy)
+                              .FirstOrDefault(p => p.PaymentId == paymentId);
+          
             if (payment == null) return false;
 
             bool isFailed = payment.PaymentAmount <= 0 ||
