@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace TravelInsuranceManagementSystem.Repo.Migrations
 {
     /// <inheritdoc />
-    public partial class UpdatedDb : Migration
+    public partial class IdentitySetup : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

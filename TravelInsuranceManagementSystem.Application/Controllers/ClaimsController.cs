@@ -1,13 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TravelInsuranceManagementSystem.Services.Interfaces;
-
-// Alias to resolve ambiguity between Model and System.Security.Claims
 using InsuranceClaim = TravelInsuranceManagementSystem.Repo.Models.Claim;
  
 namespace TravelInsuranceManagementSystem.Application.Controllers
 
 {
-
     public class ClaimsController : Controller
 
     {
@@ -60,7 +57,7 @@ namespace TravelInsuranceManagementSystem.Application.Controllers
 
             string uniqueFileName = null;
 
-            // 2. Handle File Upload (Presentation Layer Logic)
+            // 2. Handle File Upload 
 
             if (claim.DocumentFile != null)
 
@@ -90,7 +87,7 @@ namespace TravelInsuranceManagementSystem.Application.Controllers
 
             }
 
-            // 3. Call Service (Passes logic down to Repo)
+            // 3. Call Service 
 
             var result = await _claimService.SubmitClaimAsync(claim, userId, uniqueFileName);
 

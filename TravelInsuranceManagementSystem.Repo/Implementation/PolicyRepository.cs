@@ -37,11 +37,8 @@ namespace TravelInsuranceManagementSystem.Repo.Implementation
                 DestinationCountry = data.PolicyDetails.Destination,
                 TravelStartDate = data.PolicyDetails.TripStart,
                 TravelEndDate = data.PolicyDetails.TripEnd,
-                CoverageType = data.PolicyDetails.PlanType,
-              
-                PolicyStatus = PolicyStatus.ACTIVE,
-                
-
+                CoverageType = data.PolicyDetails.PlanType,             
+                PolicyStatus = PolicyStatus.PENDING,
                 CoverageAmount = coverage,
                 Members = data.Members.Select(m => new PolicyMember
                 {

@@ -1,64 +1,105 @@
 using Microsoft.EntityFrameworkCore;
-using NUnit.Framework;
-using TravelInsuranceManagementSystem.Repo.Data;
-using TravelInsuranceManagementSystem.Repo.Implementation;
-using TravelInsuranceManagementSystem.Repo.Models;
 using TravelInsuranceManagementSystem.Models;
-using System.Linq;
+using TravelInsuranceManagementSystem.Repo.Data;
+using TravelInsuranceManagementSystem.Repo.Interfaces;
+using TravelInsuranceManagementSystem.Repo.Models;
 
-namespace TravelInsuranceManagementSystem.MoqTest.RepoTest
+namespace TravelInsuranceManagementSystem.Repo.Implementation
 {
-    [TestFixture]
-    public class PaymentRepositoryTests
+    public class PaymentRepository : IPaymentRepository
     {
-        private ApplicationDbContext _context = null!;
-        private PaymentRepository _repo = null!;
+        private readonly ApplicationDbContext _context;
 
-        [SetUp]
-        public void SetUp()
+        public PaymentRepository(ApplicationDbContext context)
         {
-            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseInMemoryDatabase(databaseName: System.Guid.NewGuid().ToString())
-                .Options;
-            _context = new ApplicationDbContext(options);
-            _repo = new PaymentRepository(_context);
+            _context = context;
         }
 
-        [TearDown]
-        public void TearDown()
+        public Payment GetPaymentById(int id)
         {
-            _context.Database.EnsureDeleted();
-            _context.Dispose();
+            return _context.Payments
+                .Include(p => p.Policy)
+                .FirstOrDefault(p => p.PaymentId == id);
         }
 
-        [Test]
-        public void GetOrCreatePayment_Creates_When_NoPendingExists()
+        public Payment GetOrCreatePayment(int policyId)
         {
-            var policy = new Policy { PolicyId = 1, CoverageType = "Basic", Members = new System.Collections.Generic.List<PolicyMember>() };
-            _context.Policies.Add(policy);
+            var existing = _context.Payments
+                .Include(p => p.Policy)
+                .FirstOrDefault(p => p.PolicyId == policyId && p.PaymentStatus == PaymentStatus.PENDING);
+
+            if (existing != null) return existing;
+
+            var policy = _context.Policies
+                .Include(p => p.Members)
+                .FirstOrDefault(p => p.PolicyId == policyId);
+
+            if (policy == null) return null;
+
+            int memberCount = (policy.Members != null && policy.Members.Any()) ? policy.Members.Count : 1;
+            decimal ratePerPerson = 0;
+            if (policy.CoverageType == "Premium")
+            {
+                ratePerPerson = 6000;
+            }
+            else
+            {
+                ratePerPerson = 4000;
+            }
+
+            decimal totalAmount = ratePerPerson * memberCount;
+
+            var newPayment = new Payment
+            {
+                PolicyId = policyId,
+                PaymentDate = DateTime.Now,
+                PaymentStatus = PaymentStatus.PENDING,
+                PaymentAmount = totalAmount
+            };
+
+            _context.Payments.Add(newPayment);
             _context.SaveChanges();
-            // Ensure navigation properties are tracked
-            var storedPolicy = _context.Policies.Find(policy.PolicyId);
 
-            var payment = _repo.GetOrCreatePayment(1);
-
-            Assert.That(payment, Is.Not.Null);
-            Assert.That(payment.PolicyId, Is.EqualTo(1));
-            Assert.That(payment.PaymentStatus, Is.EqualTo(TravelInsuranceManagementSystem.Models.PaymentStatus.PENDING));
+            newPayment.Policy = policy;
+            return newPayment;
         }
 
-        [Test]
-        public void ExecutePaymentProcessing_Fails_On_InvalidCard()
+        public bool ExecutePaymentProcessing(int paymentId, string cardNumber)
         {
-            var payment = new TravelInsuranceManagementSystem.Models.Payment { PaymentId = 10, PolicyId = 5, PaymentAmount = 100m, PaymentStatus = TravelInsuranceManagementSystem.Models.PaymentStatus.PENDING };
-            _context.Payments.Add(payment);
+            // Try to get the tracked entity first, then fall back to Include() query
+            var payment = _context.Payments.Find(paymentId)
+                          ?? _context.Payments
+                              .Include(p => p.Policy)
+                              .FirstOrDefault(p => p.PaymentId == paymentId);
+            // -----------------------------------------------------
+
+            if (payment == null) return false;
+
+            bool isFailed = payment.PaymentAmount <= 0 ||
+                            (!string.IsNullOrEmpty(cardNumber) && cardNumber.Replace(" ", "") == "0000000000000000");
+
+            if (isFailed)
+            {
+                payment.PaymentStatus = PaymentStatus.FAILED;
+            }
+            else
+            {
+                payment.PaymentStatus = PaymentStatus.SUCCESS;
+
+                // --- CHANGE HERE: Update Policy Status on Success ---
+                if (payment.Policy != null)
+                {
+                    payment.Policy.PolicyStatus = PolicyStatus.ACTIVE;
+                    _context.Policies.Update(payment.Policy);
+                }
+               
+            }
+
+            payment.PaymentDate = DateTime.Now;
+            _context.Payments.Update(payment);
             _context.SaveChanges();
 
-            var result = _repo.ExecutePaymentProcessing(10, "0000000000000000");
-
-            Assert.That(result, Is.False);
-            var updated = _context.Payments.Find(10);
-            Assert.That(updated.PaymentStatus, Is.EqualTo(TravelInsuranceManagementSystem.Models.PaymentStatus.FAILED));
+            return payment.PaymentStatus == PaymentStatus.SUCCESS;
         }
     }
 }

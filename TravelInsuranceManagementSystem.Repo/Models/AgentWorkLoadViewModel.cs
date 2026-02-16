@@ -1,12 +1,10 @@
 ﻿namespace TravelInsuranceManagementSystem.Models.ViewModels
-
 {
-
     public class AgentWorkloadViewModel
 
     {
 
-        public int Id { get; set; } // User ID (int based on your User model)
+        public int Id { get; set; } // User ID 
 
         public string FullName { get; set; }
 
@@ -14,13 +12,9 @@
 
         public string Role { get; set; }
 
-        // Workload Stats
-
-   
+        // Workload Stats   
         public int ClaimsHandled { get; set; }
-
-       
-
+      
         public bool IsActive { get; set; } = true; // Default status
 
     }

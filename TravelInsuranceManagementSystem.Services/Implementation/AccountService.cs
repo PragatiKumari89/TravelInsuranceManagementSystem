@@ -12,9 +12,9 @@ namespace TravelInsuranceManagementSystem.Services.Implementation
 
     {
 
-        private readonly UserManager<User> _userManager;
+        private readonly UserManager<User> _userManager;// Manages user data (create, delete, find)
 
-        private readonly SignInManager<User> _signInManager;
+        private readonly SignInManager<User> _signInManager;// Manages login (password check, cookies)
 
         public AccountService(UserManager<User> userManager, SignInManager<User> signInManager)
 
@@ -40,9 +40,7 @@ namespace TravelInsuranceManagementSystem.Services.Implementation
 
         public async Task<IdentityResult> RegisterUser(User user, string password)
 
-        {
-
-            // SECURITY FIX: Public registration is ALWAYS "User"
+        {           
 
             user.Role = "User";
 

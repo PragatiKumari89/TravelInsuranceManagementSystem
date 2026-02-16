@@ -15,9 +15,7 @@ namespace TravelInsuranceManagementSystem.Repo.Interfaces
         Task<List<Payment>> GetAllPaymentsWithPoliciesAsync();
 
         Task<List<ClaimViewModel>> GetClaimsOverviewAsync();
-
-        // --- NEW METHOD ---
-
+      
         Task<AdminDashboardViewModel> GetDashboardSummaryAsync();
 
     }

@@ -33,9 +33,7 @@ namespace TravelInsuranceManagementSystem.Repo.Implementation
         public async Task<List<Claim>> GetClaimsWithCustomerAsync() =>
 
             await _context.Claims.Include(c => c.Policy).ThenInclude(p => p.User).OrderByDescending(c => c.ClaimDate).ToListAsync();
-
-        // --- UPDATED METHOD: Keeps ExtensionData for the detailed view ---
-
+     
         public async Task<List<SupportTicket>> GetSupportTicketsAsync() =>
 
             await _context.SupportTickets

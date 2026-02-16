@@ -14,10 +14,14 @@ namespace TravelInsuranceManagementSystem.MoqTest.ControllerTest
     [TestFixture]
     public partial class AccountControllerTests
     {
+        // 1. DEFINE MOCKS (The Fake Dependencies)
         private Mock<IAccountService> _acc = null!;
         private Mock<SignInManager<User>> _signIn = null!;
         private Mock<UserManager<User>> _userManager = null!;
+
+        // This is the REAL Controller we are testing.
         private AccountController _ctrl = null!;
+
         [TearDown]
         public void TearDownController()
         {
@@ -27,16 +31,19 @@ namespace TravelInsuranceManagementSystem.MoqTest.ControllerTest
         [SetUp]
         public void SetUp()
         {
+            // 2. SETUP THE MOCKS
             _acc = new Mock<IAccountService>();
+
             var store = new Mock<IUserStore<User>>().Object;
             _userManager = new Mock<UserManager<User>>(store, null, null, null, null, null, null, null, null);
             var contextAccessor = new Mock<Microsoft.AspNetCore.Http.IHttpContextAccessor>();
             var claimsFactory = new Mock<IUserClaimsPrincipalFactory<User>>();
             _signIn = new Mock<SignInManager<User>>(_userManager.Object, contextAccessor.Object, claimsFactory.Object, null, null, null, null);
 
+            // 3. INITIALIZE THE CONTROLLER
             _ctrl = new AccountController(_acc.Object, _signIn.Object, _userManager.Object);
 
-            // Ensure Controller.User and Identity are non-null for the GET SignIn() path
+            // 4. FAKE THE WEB CONTEXT (HTTP Context)
             _ctrl.ControllerContext = new ControllerContext
             {
                 HttpContext = new DefaultHttpContext
@@ -49,7 +56,9 @@ namespace TravelInsuranceManagementSystem.MoqTest.ControllerTest
         [Test]
         public void SignIn_Get_Returns_View()
         {
+            // 1. ACT (The Action)
             var res = _ctrl.SignIn();
+            // 2. ASSERT (The Assertion)
             Assert.That(res, Is.TypeOf<ViewResult>());
         }
     }

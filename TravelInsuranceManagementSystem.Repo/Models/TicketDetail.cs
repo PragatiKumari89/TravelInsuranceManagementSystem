@@ -9,8 +9,7 @@ namespace TravelInsuranceManagementSystem.Repo.Models
         public int DetailId { get; set; }
 
         [ForeignKey("SupportTicket")]
-        public int TicketId { get; set; } // Foreign Key to main table
-
+        public int TicketId { get; set; } 
         public string Subject { get; set; }
         public string Category { get; set; }
         public string Priority { get; set; }

@@ -12,8 +12,8 @@ using TravelInsuranceManagementSystem.Repo.Data;
 namespace TravelInsuranceManagementSystem.Repo.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260204084043_AddAgentLogic")]
-    partial class AddAgentLogic
+    [Migration("20260216055930_IdentitySetup")]
+    partial class IdentitySetup
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -81,7 +81,7 @@ namespace TravelInsuranceManagementSystem.Repo.Implementation
 
         }
 
-        // --- NEW DASHBOARD LOGIC ---
+        // ---  DASHBOARD LOGIC ---
 
         public async Task<AdminDashboardViewModel> GetDashboardSummaryAsync()
 

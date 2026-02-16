@@ -66,13 +66,12 @@ namespace TravelInsuranceManagementSystem.Repo.Implementation
 
         public bool ExecutePaymentProcessing(int paymentId, string cardNumber)
         {
-            // Try to get the tracked entity first, then fall back to Include() query
+
             var payment = _context.Payments.Find(paymentId)
                           ?? _context.Payments
                               .Include(p => p.Policy)
                               .FirstOrDefault(p => p.PaymentId == paymentId);
-            // -----------------------------------------------------
-
+          
             if (payment == null) return false;
 
             bool isFailed = payment.PaymentAmount <= 0 ||
@@ -86,13 +85,13 @@ namespace TravelInsuranceManagementSystem.Repo.Implementation
             {
                 payment.PaymentStatus = PaymentStatus.SUCCESS;
 
-                // --- CHANGE HERE: Update Policy Status on Success ---
+                // Update Policy Status on Success 
                 if (payment.Policy != null)
                 {
                     payment.Policy.PolicyStatus = PolicyStatus.ACTIVE;
                     _context.Policies.Update(payment.Policy);
                 }
-                // ----------------------------------------------------
+ 
             }
 
             payment.PaymentDate = DateTime.Now;

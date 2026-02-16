@@ -1,9 +1,7 @@
 ﻿namespace TravelInsuranceManagementSystem.Repo.Models
 
 {
-
-    // Container for Admin Dashboard Data
-
+    
     public class AdminDashboardViewModel
 
     {
@@ -19,8 +17,7 @@
         public List<AdminDashboardActivity> RecentActivities { get; set; } = new List<AdminDashboardActivity>();
 
     }
-
-    // Helper class for the unified table
+   
 
     public class AdminDashboardActivity
 

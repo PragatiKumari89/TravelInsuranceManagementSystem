@@ -1,11 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-// If your teammate's file is in a different folder/namespace, you might need this:
 using TravelInsuranceManagementSystem.Repo.Models;
 
 namespace TravelInsuranceManagementSystem.Models
 {
-    // 1. Define the Enum for Payment Status (as per your diagram)
+    // 1. Define the Enum for Payment Status 
     public enum PaymentStatus
     {
         PENDING,
@@ -27,10 +26,7 @@ namespace TravelInsuranceManagementSystem.Models
 
         // Enum property
         public PaymentStatus PaymentStatus { get; set; }
-
-        // --- Foreign Key to Teammate's Policy ---
-
-        // This links to the PolicyId in your teammate's code
+     
         public int PolicyId { get; set; }
 
         // This allows your code to see the Policy details

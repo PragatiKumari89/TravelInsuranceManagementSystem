@@ -5,8 +5,7 @@ using TravelInsuranceManagementSystem.Services.Interfaces;
 namespace TravelInsuranceManagementSystem.Application.Controllers
 
 {
-
-    public class PaymentsController : Controller
+   public class PaymentsController : Controller
 
     {
 
@@ -55,13 +54,11 @@ namespace TravelInsuranceManagementSystem.Application.Controllers
         public IActionResult PaymentConfirmation(int id)
 
         {
-
             var payment = _paymentService.GetPaymentDetails(id);
 
             if (payment == null) return NotFound();
 
             return View(payment);
-
         }
 
         public IActionResult PaymentFailed() => View();

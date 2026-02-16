@@ -22,9 +22,9 @@ namespace TravelInsuranceManagementSystem.Application.Controllers
 
         private readonly IAdminService _adminService;
 
-        private readonly SignInManager<User> _signInManager;
+        private readonly SignInManager<User> _signInManager;// Manages login (password check, cookies)
 
-        private readonly UserManager<User> _userManager;
+        private readonly UserManager<User> _userManager;// Manages user data (create, delete, find)
 
         private readonly IAccountService _accountService;
 
@@ -170,7 +170,6 @@ namespace TravelInsuranceManagementSystem.Application.Controllers
 
         {
 
-            // FIX: Remove validation errors for fields not present in the Admin form
 
             ModelState.Remove("Password");       // Passed as parameter, not in model
 
