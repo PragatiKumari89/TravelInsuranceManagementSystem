@@ -52,7 +52,7 @@ namespace TravelInsuranceManagementSystem.Repo.Models
 
     {
 
-        PENDING, 
+       PENDING,
 
         ACTIVE,
 

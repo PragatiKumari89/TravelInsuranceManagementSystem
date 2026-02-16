@@ -38,9 +38,9 @@ namespace TravelInsuranceManagementSystem.Repo.Implementation
                 TravelStartDate = data.PolicyDetails.TripStart,
                 TravelEndDate = data.PolicyDetails.TripEnd,
                 CoverageType = data.PolicyDetails.PlanType,
-                // --- CHANGE HERE: Set to PENDING initially ---
-                PolicyStatus = PolicyStatus.PENDING,
-                // ---------------------------------------------
+              
+                PolicyStatus = PolicyStatus.ACTIVE,
+                
 
                 CoverageAmount = coverage,
                 Members = data.Members.Select(m => new PolicyMember

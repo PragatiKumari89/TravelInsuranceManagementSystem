@@ -13,7 +13,6 @@ namespace TravelInsuranceManagementSystem.Repo.Models
 
         public string Subject { get; set; }
         public string Category { get; set; }
-        [NotMapped]
         public string Priority { get; set; }
         public string RelatedId { get; set; }
         public string ContactMethod { get; set; }
